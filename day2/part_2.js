@@ -28,4 +28,4 @@ for (let i = 0; i < elem_riga.length; i++) {
     aim -= +elem_riga[i].match(/(\d+)/)[1];
   }
 }
-console.log(depth_saver * horizontal); // 2044620088
+console.log(depth_saver * horizontal); //  2044620088
