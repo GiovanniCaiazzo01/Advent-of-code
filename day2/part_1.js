@@ -6,7 +6,6 @@ let horizontal = 0;
 let depth = 0;
 let sum = 0;
 
-// mi scorro tutto l'array contenente le stringhe
 for (let i = 0; i < elem_riga.length; i++) {
   if (elem_riga[i].includes("forward")) {
     horizontal += +elem_riga[i].match(/(\d+)/)[1];

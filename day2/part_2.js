@@ -8,9 +8,6 @@ let aim = 0;
 let depth = 0;
 let depth_saver = 0;
 
-// USO QUESTO PER RICAVARMI IL PRIMO NUMERO CHE ESCE IN UNA STRINGA
-//elem_riga[i].match(/(\d+)/)[1]
-
 for (let i = 0; i < elem_riga.length; i++) {
   if (+elem_riga[i].includes("forward") && aim === 0) {
     horizontal = +elem_riga[i].match(/(\d+)/)[1];
