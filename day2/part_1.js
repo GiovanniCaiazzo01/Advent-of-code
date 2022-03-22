@@ -19,4 +19,4 @@ for (let i = 0; i < elem_riga.length; i++) {
   }
 }
 sum = horizontal * depth;
-console.log(sum);
+console.log(sum); // 2147104
