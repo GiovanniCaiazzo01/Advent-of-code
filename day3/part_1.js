@@ -1,4 +1,3 @@
-const { strictEqual } = require("assert");
 const fs = require("fs");
 const input = fs.readFileSync("./input.txt").toString();
 const elem_riga = input.split("\n");
