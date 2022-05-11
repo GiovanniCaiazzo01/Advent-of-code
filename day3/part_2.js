@@ -3,15 +3,13 @@ const input = fs.readFileSync("./demo.txt").toString();
 const elem_riga = input.split("\n");
 
 let uno = [];
+let zero = [];
 let tmp = [];
 let c = [];
 
 const posizione = (j, i) => {
-  if (j.charAt([i]).includes(1)) return tmp.push(j);
-};
-const avanzamento = (tmp, i) => {
-  if (tmp.charAt([i]).includes(1)) uno = [].then(uno.push(tmp));
-  if (tmp.length === 1) return tmp;
+  if (j.charAt([i]).includes(1)) return uno.push(j);
+  if (j.charAt([i]).includes(0)) return zero.push(j);
 };
 
 const oxygen_generator_rating = (elem_riga) => {
@@ -19,10 +17,10 @@ const oxygen_generator_rating = (elem_riga) => {
     for (j of elem_riga) {
       posizione(j, i);
     }
-    avanzamento(tmp, i);
-
-    console.log(`ARRAY DI TMP ${tmp} \n ARRAY DI UNO \n ${uno}`);
-    tmp = [];
+    uno.length > zero.length
+      ? console.log(`ARRAY DI UNO \n${uno}`)
+      : console.log(`ARRAY DI ZERO \n ${zero}`);
+    zero = [];
     uno = [];
   }
 };
