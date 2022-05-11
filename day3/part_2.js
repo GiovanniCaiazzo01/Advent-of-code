@@ -2,15 +2,28 @@ const fs = require("fs");
 const input = fs.readFileSync("./demo.txt").toString();
 const elem_riga = input.split("\n");
 
-console.log(elem_riga);
+let uno = [];
+let tmp = [];
+let c = [];
+
+const posizione = (j, i) => {
+  if (j.charAt([i]).includes(1)) return tmp.push(j);
+};
+const avanzamento = (tmp, i) => {
+  if (tmp.charAt([i]).includes(1)) uno = [].then(uno.push(tmp));
+  if (tmp.length === 1) return tmp;
+};
 
 const oxygen_generator_rating = (elem_riga) => {
-  const tmp = [];
-  const len = elem_riga[0].length;
-  for (let i = 0; i < len; i++) {
-    for (let j of elem_riga) {
-      console.log(j.charAt(i));
+  for (let i = 0; i < elem_riga[0].length; i++) {
+    for (j of elem_riga) {
+      posizione(j, i);
     }
+    avanzamento(tmp, i);
+
+    console.log(`ARRAY DI TMP ${tmp} \n ARRAY DI UNO \n ${uno}`);
+    tmp = [];
+    uno = [];
   }
 };
 oxygen_generator_rating(elem_riga);
