@@ -8,19 +8,12 @@ let tmp = [];
 let c = [];
 
 const posizione = (j, i) => {
+  console.log(j.charAt([i]) == 1 ? uno.push(j) : zero.push(j));
   j.charAt([i]) == 1 ? uno.push(j) : zero.push(j);
 };
 
 const ocaz = (array, i) => {
-  if (array[i].charAt([i]) == 1) {
-    tmp.push(array);
-    array = [];
-    // e poi cosa facciamo ?
-  }
-  if (array[i].charAt([i]) == 0) {
-    zero = [];
-    zero.push(array);
-  }
+  posizione(array[i], i);
 };
 
 const oxygen_generator_rating = (elem_riga) => {
@@ -29,8 +22,6 @@ const oxygen_generator_rating = (elem_riga) => {
       posizione(j, i);
     }
     uno.length > zero.length ? ocaz(uno, i) : ocaz(zero, i);
-    zero = [];
-    uno = [];
   }
 };
 oxygen_generator_rating(elem_riga);
