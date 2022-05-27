@@ -1,29 +1,54 @@
 const fs = require("fs");
-const input = fs.readFileSync("./demo.txt").toString();
+const input = fs.readFileSync("./input.txt").toString();
 const elem_riga = input.split("\n");
 
-let uno = [];
-let zero = [];
-let tmp = [];
-let c = [];
-
-const posizione = (j, i) => {
-  console.log(j.charAt([i]) == 1 ? uno.push(j) : zero.push(j));
-  j.charAt([i]) == 1 ? uno.push(j) : zero.push(j);
-};
-
-const ocaz = (array, i) => {
-  posizione(array[i], i);
-};
-
-const oxygen_generator_rating = (elem_riga) => {
-  for (let i = 0; i < elem_riga[0].length; i++) {
-    for (j of elem_riga) {
-      posizione(j, i);
+const most_common = (filtro_vincente, index) => {
+  for (let i of filtro_vincente) {
+    index++;
+    const filtro_uno = filtro_vincente.filter((e) => e[index] == 1);
+    const filtro_due = filtro_vincente.filter((e) => e[index] == 0);
+    filtro_uno.length > filtro_due.length
+      ? (filtro_vincente = filtro_uno)
+      : (filtro_vincente = filtro_due);
+    if (filtro_uno.length === filtro_due.length) {
+      return filtro_uno;
     }
-    uno.length > zero.length ? ocaz(uno, i) : ocaz(zero, i);
   }
 };
-oxygen_generator_rating(elem_riga);
-// const c02_scrubber_rating = [];
-// let tmp = [];
+
+const most_uncommon = (filtro_vincente, index) => {
+  for (let i of filtro_vincente) {
+    index++;
+
+    const filtro_uno = filtro_vincente.filter((e) => e[index] == 1);
+    const filtro_due = filtro_vincente.filter((e) => e[index] == 0);
+
+    filtro_uno.length < filtro_due.length
+      ? (filtro_vincente = filtro_uno)
+      : (filtro_vincente = filtro_due);
+
+    if (filtro_uno.length === filtro_due.length) {
+      return filtro_due;
+    }
+  }
+};
+
+const xygen_generator_rating = (elem_riga, index) => {
+  const filtro_uno = elem_riga.filter((e) => e[index] == 1);
+  const filtro_due = elem_riga.filter((e) => e[index] == 0);
+  return filtro_uno.length > filtro_due.length
+    ? most_common(filtro_uno, index)
+    : most_common(filtro_due, index);
+};
+
+const co2_scrubber_rating = (elem_riga, index) => {
+  const filtro_uno = elem_riga.filter((e) => e[index] == 1);
+  const filtro_due = elem_riga.filter((e) => e[index] == 0);
+  return filtro_uno.length < filtro_due.length
+    ? most_uncommon(filtro_uno, index)
+    : most_uncommon(filtro_due, index);
+};
+
+const oxgen_gen = xygen_generator_rating(elem_riga, (index = 0));
+const co2 = co2_scrubber_rating(elem_riga, (index = 0));
+console.log(parseInt(oxgen_gen, 2) * parseInt(co2, 2));
