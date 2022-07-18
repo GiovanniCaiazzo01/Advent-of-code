@@ -10,15 +10,7 @@ let tmp = [];
 let sinistra = 0;
 let destra = 1;
 
-const filtroStonks = (uno, zero, index) => {
-  if (uno.lenght > zero.lenght) {
-    return uno.filter((f) => {
-      f.substring(sinistra, destra) == 1
-        ? Promise.resolve((uno = [])).then((e) => e.push(f))
-        : Promise.resolve((zero = [])).then((e) => e.push(f));
-    });
-  }
-};
+const filtroStonks = (uno, zero) => {};
 
 const oxygen_generator_rating = (elem_riga, index) => {
   for (elemX of elem_riga[index++]) {
@@ -30,9 +22,8 @@ const oxygen_generator_rating = (elem_riga, index) => {
     tmp.filter((f) =>
       f.substring(sinistra, destra) == 1 ? uno.push(f) : zero.push(f)
     );
-
-    filtroStonks(uno, zero, index);
-    console.log(pisello);
+    tmp = [];
+    filtroStonks(uno, zero);
     console.log(uno);
     console.log(zero);
     sinistra++;
