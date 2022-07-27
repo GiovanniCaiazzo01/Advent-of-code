@@ -7,12 +7,18 @@ let tmp = [];
 let left = 0;
 let right = 1;
 
-const retrive_filter_input = (array) => {};
+const retrive_filter_input = (array, left, right) => {
+  array.substring(left, right) == "1"
+    ? uno.push(array[index])
+    : zero.push(array[index]);
+  console.log(uno);
+  console.log(zero);
+};
 
 const oxygen_generator_rating = (index) => {
   for (x in input[0]) {
     for (y in input) {
-      retrive_filter_input(input[index]);
+      retrive_filter_input(input[index], left, right);
       index++;
     }
     index = 0;
