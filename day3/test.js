@@ -4,16 +4,24 @@ const input = fs.readFileSync("./demo.txt").toString().split("\n");
 const uno = [];
 const zero = [];
 let tmp = [];
+let left = 0;
+let right = 1;
 
-let destra = 1;
-let sinistra = 0;
+const filter_element = (array) => {};
 
-for (let i = 0; i < input[0].length; i++) {
-  for (let j = 0; j < input.length; j++) {
-    const data = input[j].substring(sinistra, destra);
-    tmp.push(data);
+const oxygen_generator_rating = () => {
+  for (x in input[0]) {
+    for (y in input) {
+      const data = input[y].substring(left, right);
+      tmp.push(data);
+    }
+    tmp.filter((f) => (f == "1" ? uno.push(f) : zero.push(f)));
+    uno.length > zero.length ? filter_element(uno) : filter_element(zero);
+
+    console.log("//////////////////////////////////////");
+    left++;
+    right++;
   }
-  sinistra++;
-  destra++;
-  console.log("//////////////////////////////////////");
-}
+};
+
+const most_common = oxygen_generator_rating(input);
