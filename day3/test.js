@@ -7,21 +7,19 @@ let tmp = [];
 let left = 0;
 let right = 1;
 
-const filter_element = (array) => {};
+const retrive_filter_input = (array) => {};
 
-const oxygen_generator_rating = () => {
+const oxygen_generator_rating = (index) => {
   for (x in input[0]) {
     for (y in input) {
-      const data = input[y].substring(left, right);
-      tmp.push(data);
+      retrive_filter_input(input[index]);
+      index++;
     }
-    tmp.filter((f) => (f == "1" ? uno.push(f) : zero.push(f)));
-    uno.length > zero.length ? filter_element(uno) : filter_element(zero);
-
+    index = 0;
     console.log("//////////////////////////////////////");
     left++;
     right++;
   }
 };
 
-const most_common = oxygen_generator_rating(input);
+const most_common = oxygen_generator_rating((index = 0));
