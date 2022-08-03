@@ -1,31 +1,36 @@
 const fs = require("fs");
 const input = fs.readFileSync("./demo.txt").toString().split("\n");
 
-const uno = [];
-const zero = [];
-let tmp = [];
+let array = [];
+let uno = [];
+let zero = [];
 let left = 0;
-let right = 1;
+let right = 0;
 
-const retrive_filter_input = (array, left, right) => {
-  array.substring(left, right) == "1"
-    ? uno.push(array[index])
-    : zero.push(array[index]);
-  console.log(uno);
-  console.log(zero);
+const afes = (array, left, right, uno, zero) => {
+  array.filter((e) =>
+    e.contains(e.substring(left, right) == "1" ? uno.push(e) : zero.push(e))
+  );
+
+  /*
+   * TO DO:
+    1- controllare se la lunghezza di uno è maggiure di zero
+    2- rileggere il codice 
+   */
+  // uno.length > zero.length ? (array = array[uno]) : (array = array[zero]);
+  // zero = [];
+  // uno = [];
 };
 
-const oxygen_generator_rating = (index) => {
+const most_common = (index, left, right, uno, zero) => {
   for (x in input[0]) {
     for (y in input) {
-      retrive_filter_input(input[index], left, right);
-      index++;
+      array.push(input[y]);
     }
-    index = 0;
-    console.log("//////////////////////////////////////");
-    left++;
-    right++;
+    afes(array, left, right, uno, zero);
+    console.log("////", index);
+    index++;
   }
 };
 
-const most_common = oxygen_generator_rating((index = 0));
+const ocaz = most_common(array, (index = 0), left, right, uno, zero);
