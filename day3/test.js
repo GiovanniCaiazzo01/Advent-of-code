@@ -8,18 +8,16 @@ let left = 0;
 let right = 0;
 
 const afes = (array, left, right, uno, zero) => {
+  uno.length = 0;
+  zero.length = 0;
   array.filter((e) =>
-    e.contains(e.substring(left, right) == "1" ? uno.push(e) : zero.push(e))
+    e.toString().substring(left, right) == "1" ? uno.push(e) : zero.push(e)
   );
-
-  /*
-   * TO DO:
-    1- controllare se la lunghezza di uno è maggiure di zero
-    2- rileggere il codice 
-   */
-  // uno.length > zero.length ? (array = array[uno]) : (array = array[zero]);
-  // zero = [];
-  // uno = [];
+  array.length = 0;
+  if (uno.length > zero.length) {
+    return array.push(uno);
+  }
+  return array.push(zero);
 };
 
 const most_common = (index, left, right, uno, zero) => {
@@ -27,10 +25,16 @@ const most_common = (index, left, right, uno, zero) => {
     for (y in input) {
       array.push(input[y]);
     }
-    afes(array, left, right, uno, zero);
+    const coccos = afes(array, left, right, uno, zero);
     console.log("////", index);
+    console.log("array di UNO", uno);
+    console.log("array di zero", zero);
     index++;
   }
 };
 
 const ocaz = most_common(array, (index = 0), left, right, uno, zero);
+
+/**
+ * RILEGGERE IL CODICE, SONO SULLA GIUSTA VIA
+ */
