@@ -1,32 +1,29 @@
 const fs = require("fs");
 const input = fs.readFileSync("./demo.txt").toString().split("\n");
 
-let array = [];
-let uno = [];
-let zero = [];
-let left = 0;
-let right = 1;
+const find_number = (y, index, uno, zero) => {
+  y[index] == "1" ? uno.push(y) : zero.push(y);
+};
 
-const most_common = (index, left, right, uno, zero) => {
-  for (x in input[0]) {
-    for (y in input) {
-      array.push(input[y]);
+// TODO: PRATICAMENTE FINITO DAJEEEE
+
+const ossigeno = () => {
+  for (const x of input[0]) {
+    for (const y of input) {
+      find_number(y, index, uno, zero);
     }
-    uno.length = 0;
-    zero.length = 0;
-
-    array.filter((e) => {
-      // const element  = e.substring(left, right) ==="1"
-    });
-
-    console.log(uno);
-    console.log(zero);
-
-    console.log("////", index);
-    left++;
-    right++;
     index++;
+    if (uno.length > zero.length) {
+      for (const e of uno) {
+        if (e[index] == "1") {
+          uno = [];
+          zero = [];
+          uno.push(e);
+        }
+        zero.push[e];
+      }
+    }
   }
 };
 
-const ocaz = most_common(array, (index = 0), left, right, uno, zero);
+ossigeno((uno = []), (zero = []), (index = 0));
