@@ -1,29 +1,28 @@
 const fs = require("fs");
 const input = fs.readFileSync("./demo.txt").toString().split("\n");
+let array = [];
 
-const find_number = (y, index, uno, zero) => {
-  y[index] == "1" ? uno.push(y) : zero.push(y);
+const find_number = (y, index) => {
+  if (y[index] == "1") {
+    len_uno++;
+    array.push(y);
+  }
+  len_zero++;
+  array.push(y);
 };
 
 // TODO: PRATICAMENTE FINITO DAJEEEE
 
-const ossigeno = () => {
+const oxygen_generator_rating = (index) => {
   for (const x of input[0]) {
     for (const y of input) {
-      find_number(y, index, uno, zero);
+      find_number(y, index);
     }
     index++;
-    if (uno.length > zero.length) {
-      for (const e of uno) {
-        if (e[index] == "1") {
-          uno = [];
-          zero = [];
-          uno.push(e);
-        }
-        zero.push[e];
-      }
-    }
+    len_uno > len_zero
+      ? array.filter((el) => el == "0" && el.pop())
+      : array.filter((el) => el == "1" && el.pop());
   }
 };
 
-ossigeno((uno = []), (zero = []), (index = 0));
+oxygen_generator_rating((index = 0), (len_uno = 0), (len_zero = 0));
