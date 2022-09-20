@@ -1,29 +1,27 @@
 const fs = require("fs");
 const input = fs.readFileSync("./demo.txt").toString().split("\n");
+
 let array = [];
-
-const find_number = (y, index) => {
-  if (y[index] == "1") {
-    len_uno++;
-    array.push(y);
-  }
-  len_zero++;
-  array.push(y);
-};
-
-// TODO: PRATICAMENTE FINITO DAJEEEE
-
-const oxygen_generator_rating = (index) => {
+let uno = [];
+let zero = [];
+let index = 0;
+// capire perchè vince sempre 0 dopo la prima iterazione
+let oxygen_generator_rating = () => {
   for (const x of input[0]) {
-    index++;
     for (const y of input) {
-      find_number(y, index);
+      if (array.length < 1) y[index] == "1" ? uno.push(y) : zero.push(y);
+      else if (array.length > 1) {
+        array[index] == "1" ? uno.push(y) : zero.push(y);
+      }
     }
     index++;
-    len_uno > len_zero
-      ? array.filter((el) => el == "0" && el.pop())
-      : array.filter((el) => el == "1" && el.pop());
+    array = [];
+
+    uno.length > zero.length ? array.push(...uno) : array.push(...zero);
+    uno.length > zero.length ? console.log("vince 1") : console.log("vince 0");
+
+    uno = [];
+    zero = [];
   }
 };
-
-oxygen_generator_rating((index = -1), (len_uno = 0), (len_zero = 0));
+oxygen_generator_rating();
