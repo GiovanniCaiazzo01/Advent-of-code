@@ -15,6 +15,7 @@ const find_number = (y, index) => {
 
 const oxygen_generator_rating = (index) => {
   for (const x of input[0]) {
+    index++;
     for (const y of input) {
       find_number(y, index);
     }
@@ -25,4 +26,4 @@ const oxygen_generator_rating = (index) => {
   }
 };
 
-oxygen_generator_rating((index = 0), (len_uno = 0), (len_zero = 0));
+oxygen_generator_rating((index = -1), (len_uno = 0), (len_zero = 0));
