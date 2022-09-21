@@ -9,11 +9,20 @@ let index = 0;
 let oxygen_generator_rating = () => {
   for (const x of input[0]) {
     for (const y of input) {
-      if (array.length < 1) y[index] == "1" ? uno.push(y) : zero.push(y);
-      else if (array.length > 1) {
+      if (array.length < 1) {
+        y[index] == "1" ? uno.push(y) : zero.push(y);
+      } else if (array.length > 1) {
         array[index] == "1" ? uno.push(y) : zero.push(y);
       }
     }
+
+    console.log(
+      `interazione numero ${index} il vincitore di questa iterazione è ${
+        uno.length > zero.length
+          ? console.log("E' uno", uno)
+          : console.log("E' zero", zero)
+      }`
+    );
     index++;
     array = [];
 
