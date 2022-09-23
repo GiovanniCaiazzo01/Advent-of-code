@@ -1,69 +1,84 @@
 const fs = require("fs");
-const input = fs.readFileSync("./demo.txt").toString();
-const elem_riga = input.split("\n");
+const input = fs.readFileSync("./input.txt").toString().split("\n");
 
-const most_common = (filtro_vincente, index) => {
-  for (let i of filtro_vincente) {
-    console.log("FILTRO VINCENTE", filtro_vincente);
-    index++;
-    const filtro_uno = filtro_vincente.filter((e) => e[index] === "1");
-    const filtro_due = filtro_vincente.filter((e) => e[index] === "0");
+let index = 0,
+  second_index = 0;
+let array = [],
+  uno = [],
+  zero = [];
 
-    filtro_uno.length > filtro_due.length
-      ? (filtro_vincente = filtro_uno)
-      : (filtro_vincente = filtro_due);
+let co2_index = 0,
+  co2_second_index = 0;
 
-    console.log("FILTRO UNO", filtro_uno, "\n", "FILTRO DUE", filtro_due);
-    if (
-      filtro_uno.length === filtro_due.length &&
-      filtro_uno.length === 1 &&
-      filtro_due.length === 1
-    ) {
-      return filtro_uno;
+let co2_array = [],
+  co2_uno = [],
+  co2_zero = [];
+
+// TODO: CAPIRE PERCHE IL NEGATIVO CACCIA FUORI UN NUMERO CHE NON DOVREBBE'
+let oxygen_generator_rating = () => {
+  for (const x of input[0]) {
+    for (const y of input) {
+      if (index < 1) {
+        y[index] == "1" ? uno.push(y) : zero.push(y);
+      } else if (index >= 1 && second_index < array[0].length) {
+        array[0][second_index].substring(index, index + 1) == "1"
+          ? uno.push(array[0][second_index])
+          : zero.push(array[0][second_index]);
+        // console.log("ARRAY DI INDEX = ", index);
+      }
+      second_index++;
     }
+
+    second_index = 0;
+    index++;
+    array = [];
+
+    uno.length > zero.length || uno.length === zero.length
+      ? array.push(uno)
+      : array.push(zero);
+
+    uno = [];
+    zero = [];
+  }
+  return array;
+};
+
+const co2_scrubber_rating = () => {
+  for (const x of input[0]) {
+    for (const y of input) {
+      if (co2_index < 1) {
+        y[co2_index] == "0" ? co2_zero.push(y) : co2_uno.push(y);
+      } else if (co2_index >= 1 && co2_second_index < co2_array[0].length) {
+        co2_array[0][co2_second_index].substring(co2_index, co2_index + 1) ==
+        "0"
+          ? co2_zero.push(co2_array[0][co2_second_index])
+          : co2_uno.push(co2_array[0][co2_second_index]);
+      }
+      co2_second_index++;
+    }
+
+    co2_second_index = 0;
+    co2_index++;
+    co2_array = [];
+
+    co2_zero.length < co2_uno.length || co2_zero.length === co2_uno.length
+      ? co2_array.push(co2_zero)
+      : co2_array.push(co2_uno);
+    if (co2_array[0].length === 1) return co2_array;
+
+    co2_uno = [];
+    co2_zero = [];
   }
 };
 
-const most_uncommon = (filtro_vincente, index) => {
-  for (let i of filtro_vincente) {
-    console.log("FILTRO VINCENTE", filtro_vincente);
-    index++;
+const ogr = oxygen_generator_rating();
+const co2 = co2_scrubber_rating();
 
-    const filtro_uno = filtro_vincente.filter((e) => e[index] === "1");
-    const filtro_due = filtro_vincente.filter((e) => e[index] === "0");
+const ogrDecimal = parseInt(ogr, 2);
+const co2Decimal = parseInt(co2, 2);
 
-    filtro_uno.length < filtro_due.length
-      ? (filtro_vincente = filtro_uno)
-      : (filtro_vincente = filtro_due);
-    console.log("FILTRO UNO", filtro_uno, "\n", "FILTRO DUE", filtro_due);
-    if (
-      filtro_uno.length === filtro_due.length &&
-      filtro_uno.length === 1 &&
-      filtro_due.length === 1
-    ) {
-      return filtro_due;
-    }
-  }
-};
-
-const xygen_generator_rating = (elem_riga, index) => {
-  const filtro_uno = elem_riga.filter((e) => e[index] === "1");
-  const filtro_due = elem_riga.filter((e) => e[index] === "0");
-  return filtro_uno.length > filtro_due.length
-    ? most_common(filtro_uno, index)
-    : most_common(filtro_due, index);
-};
-
-const co2_scrubber_rating = (elem_riga, index) => {
-  const filtro_uno = elem_riga.filter((e) => e[index] === "1");
-  const filtro_due = elem_riga.filter((e) => e[index] === "0");
-  return filtro_uno.length < filtro_due.length
-    ? most_uncommon(filtro_uno, index)
-    : most_uncommon(filtro_due, index);
-};
-
-const oxgen_gen = xygen_generator_rating(elem_riga, (index = 0));
-const co2 = co2_scrubber_rating(elem_riga, (index = 0));
-
-console.log(oxgen_gen, co2);
-console.log(parseInt(oxgen_gen, 2) * parseInt(co2, 2));
+console.log(
+  `oxygen generator rating => ${ogr}(${ogrDecimal})\n CO2 scrubber rating => ${co2}(${co2Decimal})\n FINAL RESULT => ${
+    ogrDecimal * co2Decimal
+  } `
+);
