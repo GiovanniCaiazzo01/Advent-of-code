@@ -5,7 +5,7 @@ let array = [];
 let uno = [];
 let zero = [];
 
-// TODO: CAPIRE PERCHE IL NEGATIVO NON FUNZIONA'
+// TODO: CAPIRE PERCHE IL NEGATIVO CACCIA FUORI UN NUMERO CHE NON DOVREBBE'
 let oxygen_generator_rating = (index, second_index) => {
   for (const x of input[0]) {
     for (const y of input) {
@@ -21,12 +21,6 @@ let oxygen_generator_rating = (index, second_index) => {
     }
 
     second_index = 0;
-    index < 1 &&
-      console.log(`array UNO: => [${uno}]    array ZERO: => [${zero}]`);
-
-    index >= 1 &&
-      console.log(`array UNO: => [${uno}]    array ZERO: => [${zero}]`);
-
     index++;
     array = [];
 
@@ -34,11 +28,10 @@ let oxygen_generator_rating = (index, second_index) => {
       ? array.push(uno)
       : array.push(zero);
 
-    console.log(`array VINCENTE ${array}`);
     uno = [];
     zero = [];
   }
-  return +array;
+  return array;
 };
 
 const co2_scrubber_rating = (index, second_index, array, uno, zero) => {
@@ -56,11 +49,6 @@ const co2_scrubber_rating = (index, second_index, array, uno, zero) => {
     }
 
     second_index = 0;
-    index < 1 &&
-      console.log(`array UNO: => [${uno}]    array ZERO: => [${zero}]`);
-
-    index >= 1 &&
-      console.log(`array UNO: => [${uno}]    array ZERO: => [${zero}]`);
 
     index++;
     array = [];
@@ -69,11 +57,10 @@ const co2_scrubber_rating = (index, second_index, array, uno, zero) => {
       ? array.push(zero)
       : array.push(uno);
 
-    console.log(`array VINCENTE ${array}`);
     uno = [];
     zero = [];
   }
-  return +array;
+  return array;
 };
 
 const ogr = oxygen_generator_rating(
@@ -83,7 +70,7 @@ const ogr = oxygen_generator_rating(
   (uno = []),
   (zero = [])
 );
-const co2 = oxygen_generator_rating(
+const co2 = co2_scrubber_rating(
   (index = 0),
   (second_index = 0),
   (array = []),
@@ -91,4 +78,11 @@ const co2 = oxygen_generator_rating(
   (zero = [])
 );
 
-console.log(ogr, co2);
+const ogrDecimal = parseInt(ogr, 2);
+const co2Decimal = parseInt(co2, 2);
+
+console.log(
+  `oxygen generator rating => ${ogr}(${ogrDecimal})\n CO2 scrubber rating => ${co2}(${co2Decimal})\n FINAL RESULT => ${
+    ogrDecimal * co2Decimal
+  } `
+);
