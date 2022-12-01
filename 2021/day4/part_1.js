@@ -16,6 +16,7 @@ const checkForBingo = (element_to_send) => {
   let counter = 0;
   for (const n of number) {
     have_number.push(n);
+    console.log(have_number);
     for (const single_number of have_number) {
       if (have_number[counter] === n) {
       }
