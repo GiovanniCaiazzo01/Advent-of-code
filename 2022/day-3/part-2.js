@@ -39,12 +39,3 @@ for (const el of ocaz) {
   el in upper ? (sum += upper[el]) : null;
 }
 console.log(sum);
-// for (const left of input) {
-//   for (const midle of input) {
-//     for (const right of input) {
-//       if (left === midle && left === right) {
-//         arr.push(left);
-//       }
-//     }
-//   }
-// }
