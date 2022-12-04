@@ -15,7 +15,7 @@ const input = require("fs")
     }
     return arr;
   });
-const ocaz = arr
+const new_input = arr
   .map((el) => {
     const first = el[0].split("\n");
     const second = el[1].split("\n");
@@ -34,7 +34,7 @@ const ocaz = arr
   })
   .map((el) => el[0]);
 let sum = 0;
-for (const el of ocaz) {
+for (const el of new_input) {
   el in lower ? (sum += lower[el]) : null;
   el in upper ? (sum += upper[el]) : null;
 }
