@@ -24,7 +24,6 @@ const input = require("fs")
   })
   .map((el) => el[0]);
 let sum = 0;
-console.log(input);
 for (const el of input) {
   el in lower ? (sum += lower[el]) : null;
   el in upper ? (sum += upper[el]) : null;
