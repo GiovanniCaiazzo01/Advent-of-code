@@ -17,7 +17,6 @@ const check = (left, right) => {
   let right_min = Math.min(...right);
   const left_to_compare = [];
   const right_to_compare = [];
-  console.log(left_min, right_min);
   for (let i = left_min; i <= left_limit; i++) {
     left_to_compare.push(i);
   }
