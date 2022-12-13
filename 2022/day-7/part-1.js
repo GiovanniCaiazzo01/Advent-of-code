@@ -10,12 +10,6 @@ const format_element = (element) => {
   }
 };
 
-const retrive_value = (number) => {
-  if (+number < 100000) {
-    return +number;
-  }
-};
-
 const riempi_dir = (index, input, element) => {
   const value = [];
   for (let i = index; i < input.length; i++) {
@@ -25,7 +19,6 @@ const riempi_dir = (index, input, element) => {
     if (element in dit_three_structure) {
       if (input[i].includes("dir")) {
         const dir = input[i].substring(4, 5).trim();
-        console.log(dir);
         value.push(
           (dit_three_structure[dir] = {
             [dir]: {},
@@ -58,6 +51,22 @@ for (let i = 0; i < input.length; i++) {
   }
 }
 
+let cont = 0;
+for (const dir in dit_three_structure) {
+  cont = 0;
+  let prev = dit_three_structure[dir];
+  for (const el in dit_three_structure) {
+    let curr = el;
+    if (prev[cont] === undefined) continue;
+    // devi continuare da qui, se l'elemento corrente  si trovo nelle cheivi dell'oggetto prev
+    // e l'elemento prev è un oggetto allora esegui le istruzioni
+    if (curr in prev[cont] && typeof prev[cont] === "object") {
+      console.log(dit_three_structure);
+      prev[cont][el] = dit_three_structure[curr];
+    }
+    cont++;
+  }
+}
 console.log(dit_three_structure, "\n--------------------------------");
 [
   "$ cd /",
