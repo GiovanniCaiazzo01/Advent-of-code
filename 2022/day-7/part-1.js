@@ -51,23 +51,33 @@ for (let i = 0; i < input.length; i++) {
   }
 }
 
+console.log(dit_three_structure);
 let cont = 0;
 for (const dir in dit_three_structure) {
   cont = 0;
   let prev = dit_three_structure[dir];
+  // console.log(prev);
   for (const el in dit_three_structure) {
     let curr = el;
+    console.log(curr);
     if (prev[cont] === undefined) continue;
-    // devi continuare da qui, se l'elemento corrente  si trovo nelle cheivi dell'oggetto prev
+    if (prev[cont][el] === undefined) continue;
+    // devi continuare da qui, se l'elemento corrente  si trova nelle cheivi dell'oggetto prev
     // e l'elemento prev è un oggetto allora esegui le istruzioni
-    if (curr in prev[cont] && typeof prev[cont] === "object") {
-      console.log(dit_three_structure);
+    if (curr in prev[cont]) {
       prev[cont][el] = dit_three_structure[curr];
+      console.log(dit_three_structure[el]);
     }
     cont++;
   }
 }
-console.log(dit_three_structure, "\n--------------------------------");
+console.log();
+console.log(
+  dit_three_structure,
+  "weeeeeeeeeeeeeeeeeeeee",
+  dit_three_structure["/"][0].a[0].e,
+  "\n--------------------------------"
+);
 [
   "$ cd /",
   "$ ls",
