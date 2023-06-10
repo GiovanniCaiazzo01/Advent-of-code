@@ -9,32 +9,31 @@ const input = require("fs")
   .readFileSync("demo.txt", { encoding: "utf-8" })
   .split("\n");
 
-let pre = 0;
-let next = 1;
-let spaces = 0;
-const new_map = [];
-
-for (let i = 0; i < input.length; i++) {
-  pre = 0;
-  next = 1;
-  for (let j = 0; j < input.length; j++) {
-    if (!new_map[i]) new_map[i] = [];
-    if (spaces === 4) {
-      new_map[i].push(" ");
-    }
-    if (input[i].substring(pre, next) === " ") {
-      spaces++;
-      pre++;
-      next++;
-    }
-    if (input[i].substring(pre, next) === "[") {
+const ARR2D = [];
+const make_array = (string) => {
+  let spaces = 0;
+  const arr_to_push = [];
+  for (const el of string) {
+    el === " " && spaces++;
+    if (spaces === 3) {
+      arr_to_push.push(" ");
       spaces = 0;
-      new_map[i].push(input[i].substring(pre + 1, next + 1));
     }
+    if (arr_to_push.length === 3) return arr_to_push;
+    if (/^[a-zA-Z]+$/.test(el)) arr_to_push.push(el);
   }
+};
+
+for (const el of input) {
+  if (el === "") input.splice(input.indexOf(el), 1);
 }
 
-console.log(new_map);
+for (const el of input) {
+  const arr = make_array(el);
+  console.log(arr);
+  ARR2D.push(arr);
+}
+
 // [
 //   "    [D]    ",
 //   "[N] [C]    ",
