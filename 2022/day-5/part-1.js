@@ -28,6 +28,8 @@ for (const el of input) {
   if (el === "") input.splice(input.indexOf(el), 1);
 }
 
+console.log(input);
+
 for (const el of input) {
   const arr = make_array(el);
   console.log(arr);
