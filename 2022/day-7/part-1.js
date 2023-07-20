@@ -4,11 +4,17 @@ const input = require("fs")
 
 const LIMIT = 100000;
 const folders = {};
+
+let currentDir = "";
+let previusDir = "";
+
 const makeDir = (dirToMake) => {
   folders[dirToMake] = {
     files: [],
     currentDir,
     previusDir,
+    subdir: [],
+    parentDir: "",
     action: [],
     value: 0,
   };
@@ -31,11 +37,11 @@ const fillDir = (dirToFill, el) => {
   if (isAction) {
     return folders[dirToFill].action.push(el);
   }
+  el.includes("dir") && folders[currentDir].subdir.push(el.substring(4).trim());
+
   return folders[dirToFill].files.push(el);
 };
 
-let currentDir = "";
-let previusDir = "";
 const checkForAction = (current_element) => {
   return current_element.includes("$");
 };
@@ -44,6 +50,7 @@ const detectTypeOfAction = (current_element) => {
   if (current_element.includes("cd") && !current_element.includes("..")) {
     previusDir = currentDir;
     currentDir = current_element.substring(4).trim();
+
     return ["make", current_element.substring(4).trim()];
   }
 
@@ -76,12 +83,18 @@ const dirSizeresult = () => {
   for (const dir of Object.values(folders)) {
     const sizeResult = countDirsize(dir.files, dir.currentDir);
     if (sizeResult.size <= LIMIT) {
-      console.log(sizeResult.size);
       finalResult += sizeResult.size;
     }
   }
   return finalResult;
 };
 
+for (const dir of Object.values(folders)) {
+  for (const subdir of dir.subdir) {
+    folders[subdir].parentDir = dir.currentDir;
+  }
+}
+
 console.log(folders);
-console.log(dirSizeresult());
+// console.log(folders);
+// console.log(dirSizeresult());
