@@ -96,5 +96,4 @@ for (const dir of Object.values(folders)) {
 }
 
 console.log(folders);
-// console.log(folders);
-// console.log(dirSizeresult());
+console.log(dirSizeresult());
