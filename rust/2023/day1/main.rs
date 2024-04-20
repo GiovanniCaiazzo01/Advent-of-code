@@ -36,7 +36,7 @@ fn main() {
                 array_of_number.clear();
             }
 
-            if array_of_number.len() == 1 {
+            if array_of_number.len() == 2 {
                 final_array_of_number.push(array_of_number.clone());
                 array_of_number.clear();
             }
